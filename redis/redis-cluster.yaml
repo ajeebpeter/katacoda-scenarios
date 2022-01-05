@@ -13,7 +13,7 @@ spec:
     targetPort: 16379
   clusterIP: None
   selector:
-    app: redis
+    app: redis-cluster
 
 ---
 apiVersion: apps/v1
@@ -23,13 +23,13 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: redis # has to match .spec.template.metadata.labels
-  serviceName: "redis-cluster-service"
+      app: redis-cluster # has to match .spec.template.metadata.labels
+  serviceName: "redis-cluster"
   replicas: 6 # by default is 1
   template:
     metadata:
       labels:
-        app: redis # has to match .spec.selector.matchLabels
+        app: redis-cluster # has to match .spec.selector.matchLabels
     spec:
       containers:
       - name: redis
@@ -57,6 +57,7 @@ spec:
        - name: conf
          configMap:
           name: redis-cluster-configmap
+          defaultMode: 0755
 
   volumeClaimTemplates:
   - metadata:

@@ -1,0 +1,5 @@
+setup HostPath on all Nodes:
+============================
+
+ssh <Node-x>
+mkdir /redis01 /redis02 /redis03 /redis04 /redis05 /redis06
